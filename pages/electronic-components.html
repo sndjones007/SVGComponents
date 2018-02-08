@@ -268,12 +268,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.2/d3.js"></script>
-<script src="../lib/js/d3_utility.js"></script>
-    <!--<script src="../lib/js/electrical_common.js"></script>
-    <script src="../lib/js/electrical_gates.js"></script>
-<script src="../lib/js/electrical_components.js"></script>-->
-<script src="../lib/js/d3_data_matrix.js"></script>
+    <script src="../lib/js/d3_wrapper.js"></script>
+    <script src="../lib/js/ui_utility.js"></script>
     <script src="../lib/js/gate_dm.js"></script>
+    <script src="../lib/js/d3_render.js"></script>
 <script>
     $.fn.xpathEvaluate = function (xpathExpression) {
         // NOTE: vars not declared local for debug purposes
@@ -294,9 +292,9 @@
     var y = $(document).xpathEvaluate("//div[@class='row-fluid']//div[@class='col']//div[@class='col']//div");
 
     for (var i = 0; i < y.length; ++i) {
-        d3_create_matrix(y[i].id, y[i].id, true);
+        DMRender.process(y[i].id, y[i].id, true);
     }
-    
+
 
     // https://symbols.radicasoftware.com/stencil/IEC.html
     // https://www.electrical-symbols.com/electric-electronic-symbols/electric-generator-symbols.htm
