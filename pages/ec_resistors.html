@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/css/tether.min.css"/>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+       integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css" />
+ <link href="../lib/css/starter-template.css" rel="stylesheet">
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.2/d3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js"></script>
+<script src="../lib/js/common.js"></script>
+<script src="../lib/js/d3_wrapper.js"></script>
+<script src="../lib/js/ui_utility.js"></script>
+<script src="../lib/js/d3_render.js"></script>
+<script src="../lib/js/electronic_components/resistors/d3_ec_resistors_dm.js"></script>
+<script src="../lib/js/electronic_components/resistors/tex_ec_resistors_dm.js"></script>
+<script>
+    var d3div = d3.select("body");
+    var counterDiv = 100;
+
+    for(var dmId in DMRender.TopicSvgDMDict) {
+      d3div.append("div").attr("id", "resistors-" + counterDiv);
+      DMRender.processTopicImage("resistors-" + counterDiv, dmId, {displayText: true});
+      counterDiv++;
+    }
+</script>
+</body>
+</html>

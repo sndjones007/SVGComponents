@@ -22,48 +22,62 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="col">
-                                <div id="NOT-gate" data-key="gate.NOT"></div><div id="aaa"></div>
+                                <div id="NOT-gate" data-key="gate.NOT"></div>
+                                <div id="NOT-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="AND-gate" data-key="gate.AND"></div>
+                                <div id="AND-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="OR-gate" data-key="gate.OR"></div>
+                                <div id="OR-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="NAND-gate" data-key="gate.NAND"></div>
+                                <div id="NAND-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="NOR-gate" data-key="gate.NOR"></div>
+                                <div id="NOR-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="XOR-gate" data-key="gate.XOR"></div>
+                                <div id="XOR-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="XNOR-gate" data-key="gate.XNOR"></div>
+                                <div id="XNOR-gate-symbol"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div id="IEC-NOT-gate" data-key="gate.NOT.IEC"></div>
+                                <div id="IEC-NOT-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="IEC-AND-gate" data-key="gate.AND.IEC"></div>
+                                <div id="IEC-AND-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="IEC-OR-gate" data-key="gate.OR.IEC"></div>
+                                <div id="IEC-OR-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="IEC-NAND-gate" data-key="gate.NAND.IEC"></div>
+                                <div id="IEC-NAND-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="IEC-NOR-gate" data-key="gate.NOR.IEC"></div>
+                                <div id="IEC-NOR-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="IEC-XOR-gate" data-key="gate.XOR.IEC"></div>
+                                <div id="IEC-XOR-gate-symbol"></div>
                             </div>
                             <div class="col">
                                 <div id="IEC-XNOR-gate" data-key="gate.XNOR.IEC"></div>
+                                <div id="IEC-XNOR-gate-symbol"></div>
                             </div>
                         </div>
                     </div>
@@ -72,7 +86,6 @@
         </div>
     </div>
 </div>
-<div style="text-decoration: overline; font-family: 'Cambria Math'; font-size: 20px;">Absurd</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
@@ -84,7 +97,8 @@
 <script src="../lib/js/d3_wrapper.js"></script>
 <script src="../lib/js/ui_utility.js"></script>
 <script src="../lib/js/d3_render.js"></script>
-<script src="../lib/js/d3_gate_dm.js"></script>
+<script src="../lib/js/electronic_components/basic_gates/d3_basic_gate_dm.js"></script>
+<script src="../lib/js/electronic_components/basic_gates/tex_basic_gate_dm.js"></script>
 <script>
     $.fn.xpathEvaluate = function (xpathExpression) {
         // NOTE: vars not declared local for debug purposes
@@ -102,13 +116,15 @@
         return $result;
     }
 
-    var y = $(document).xpathEvaluate("//div[@class='row-fluid']//div[@class='col']//div[@class='col']//div");
+    var y = $(document).xpathEvaluate("//div[@class='row-fluid']//div[@class='col']//div[@class='col']//div[@data-key]");
 
     for (var i = 0; i < y.length; ++i) {
-        DMRender.process(y[i].id, y[i].getAttribute("data-key"), true);
+        var d3DivObject = d3.select("#" + y[i].id);
+        //DMRender.process(y[i].id, y[i].getAttribute("data-key"), true, y[i].id + "-symbol", true);
+        //DMRender.processTopicImage(d3DivObject, y[i].getAttribute("data-key"), {displayText: true});
+        DMRender.processTopicImage(y[i].id, y[i].getAttribute("data-key"), {displayText: true});
+        DMRender.processSymbolImage(y[i].id + "-symbol", y[i].getAttribute("data-key"), {isSvg: true});
     }
-
-    katex.render("\\bar{A} or ~~A", document.getElementById("aaa"));
 
     // https://symbols.radicasoftware.com/stencil/IEC.html
     // https://www.electrical-symbols.com/electric-electronic-symbols/electric-generator-symbols.htm
